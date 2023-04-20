@@ -1,11 +1,11 @@
 <script>
   export let id
-  export let rows
   export let name
   export let label
   export let value
-  export let controlType
+  export let rows = null
   export let type = "text"
+  export let controlType = null
 </script>
 
 <div class="form-control">
