@@ -1,23 +1,14 @@
 <script>
-  import Button from "../UI/Button.svelte"
+  import Button from '../UI/Button.svelte'
 
-  import { cartStore } from "../Cart/cart-store"
+  import { customCart } from '../Cart/cart-store'
 
   export let id
   export let title
   export let price
   export let description
 
-  function addToCart() {
-    cartStore.update(currentCartStore => [
-      ...currentCartStore,
-      {
-        id,
-        title,
-        price,
-      },
-    ])
-  }
+  const addToCart = () => customCart.addItem({ id, title, price })
 </script>
 
 <div class="product">
@@ -47,7 +38,7 @@
 
   h1 {
     font-size: 1.25rem;
-    font-family: "Roboto Slab", serif;
+    font-family: 'Roboto Slab', serif;
     margin: 0;
   }
 

@@ -1,16 +1,16 @@
 <script>
   // import { onDestroy } from "svelte"
-  import Button from "../UI/Button.svelte"
+  import Button from '../UI/Button.svelte'
 
-  import { cartStore } from "../Cart/cart-store"
-  import { productsStore } from "../Products/products-store"
+  import { customCart } from '../Cart/cart-store'
+  import { productsStore } from '../Products/products-store'
 
   export let id
   export let title
   export let price
 
   let isDescriptionVisible = false
-  let description = "Not available!"
+  let description = 'Not available!'
 
   // let fetchedProducts = []
   // const unsubscribe = productsStore.subscribe(products => {
@@ -30,9 +30,7 @@
     unsubscribe?.()
   }
 
-  function removeFromCart() {
-    cartStore.update(cartItems => cartItems.filter(cI => cI.id !== id))
-  }
+  const removeFromCart = () => customCart.removeItem(id)
 
   // onDestroy(() => {
   //   unsubscribe?.()
@@ -45,7 +43,7 @@
   <h2>{price}</h2>
 
   <Button mode="outline" on:click={displayDescription}>
-    {isDescriptionVisible ? "Hide Description" : "Show Description"}
+    {isDescriptionVisible ? 'Hide Description' : 'Show Description'}
   </Button>
 
   <Button on:click={removeFromCart}>Remove from Cart</Button>

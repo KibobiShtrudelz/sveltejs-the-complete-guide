@@ -12,3 +12,19 @@ export const cartStore = writable([
     price: 9.99
   }
 ])
+
+export const customCart = {
+  subscribe: cartStore.subscribe,
+
+  addItem: ({ id, title, price }) =>
+    cartStore.update(items =>
+      items.find(item => item.id === id)
+        ? [...items]
+        : [...items, { id, title, price }]
+    ),
+
+  removeItem: id =>
+    cartStore.update(cartItems => cartItems.filter(cI => cI.id !== id))
+}
+
+export default customCart
